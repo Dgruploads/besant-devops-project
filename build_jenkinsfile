@@ -1,0 +1,25 @@
+pipeline {
+	agent {label 'build'} 
+	stages {
+		stage ("Clean the old package") {
+			steps {
+				sh "mvn clean"
+			}
+		}
+		stage ("Build a new package") {
+			steps {
+				sh "mvn install"
+			}
+		}
+		stage ("Copy the package to S3 bucket") {
+			steps {
+				sh "aws s3 cp target/"
+			}
+		}
+		stage ("Trigger the deploy pipeline") {
+			steps {
+				build 'Deploy_pipeline'
+			}
+		}
+	}
+}
