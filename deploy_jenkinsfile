@@ -25,6 +25,5 @@ pipeline {
                 subject: "Deployment failed!! Please check", 
                 to: "cloudtechiez9@gmail.com"
 		}
-		}
 	}
 }
