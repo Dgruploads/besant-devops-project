@@ -11,5 +11,10 @@ pipeline {
         sh "echo 'This is a another test job running in jenkins'"
       }
     }
+    stage ("This is the third stage") {
+      steps {
+        sh "echo 'This is a another test job running in jenkins'"
+      }
+    }
   }
 }
