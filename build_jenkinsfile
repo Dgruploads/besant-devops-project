@@ -13,7 +13,7 @@ pipeline {
 		}
 		stage ("Copy the package to S3 bucket") {
 			steps {
-				sh "aws s3 cp target/"
+				sh "aws s3 cp target/devops-project.war s3://dgruploads-jenkins-demo"
 			}
 		}
 		stage ("Trigger the deploy pipeline") {
