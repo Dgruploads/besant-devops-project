@@ -1,0 +1,15 @@
+pipeline {
+  agent any
+  stages {
+    stage ("This is the first stage") {
+      steps {
+        sh "echo 'This is a test job running in jenkins'"
+      }
+    }
+    stage ("This is the first stage") {
+      steps {
+        sh "echo 'This is a another test job running in jenkins'"
+      }
+    }
+  }
+}
