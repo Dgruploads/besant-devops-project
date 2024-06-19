@@ -1,0 +1,30 @@
+pipeline {
+	agent {label 'deploy'} 
+	stages {
+		stage ("delete the old package") {
+			steps {
+				sh "rm -rf /home/ubuntu/tomcat/webapps/devops-project.war"
+			}
+		}
+		stage ("Download the new package from S3 bucket") {
+			steps {
+				sh "aws s3 cp s3://dgruploads-jenkins-demo/devops-project.war /home/ubuntu/tomcat/webapps/"
+			}
+		}
+	}
+	post {
+		success {
+			mail bcc: '', 
+                body: "Deployment was successfull", 
+                subject: "Deployment was successfull", 
+                to: "cloudtechiez9@gmail.com"
+		}
+		failure {
+			mail bcc: '', 
+                body: "Deployment failed!! Please check", 
+                subject: "Deployment failed!! Please check", 
+                to: "cloudtechiez9@gmail.com"
+		}
+		}
+	}
+}
